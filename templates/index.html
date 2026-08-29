@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kimit Real Estate Agency</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
+    body { background-color: #0f172a; color: #f8fafc; padding: 30px 20px; }
+
+    /* Header */
+    header { text-align: center; margin-bottom: 30px; }
+    header h1 { color: #38bdf8; font-size: 2.5rem; margin-bottom: 8px; font-weight: 700; }
+    header p { color: #94a3b8; font-size: 1.1rem; letter-spacing: 0.5px; }
+
+    /* Main Container */
+    .container { max-width: 900px; margin: 0 auto; background: #1e293b; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+
+    /* Slideshow Area */
+    .slideshow-container { position: relative; width: 100%; height: 480px; }
+    .mySlides { display: none; height: 100%; position: relative; }
+    .mySlides img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Caption Overlay */
+    .caption { position: absolute; bottom: 0; right: 0; left: 0; padding: 20px; background: linear-gradient(transparent, rgba(15, 23, 42, 0.9)); color: #fff; text-align: left; }
+    .caption h3 { font-size: 1.5rem; color: #38bdf8; }
+    .caption p { font-size: 1rem; color: #cbd5e1; }
+
+    /* Navigation Arrows */
+    .prev, .next { cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); padding: 12px 18px; color: white; font-weight: bold; font-size: 22px; background: rgba(15, 23, 42, 0.6); border: none; border-radius: 50%; transition: 0.3s; user-select: none; }
+    .prev:hover, .next:hover { background: #38bdf8; color: #0f172a; }
+    .next { right: 15px; }
+    .prev { left: 15px; }
+
+    /* Property Quick Info Bar */
+    .property-details { display: flex; justify-content: space-around; padding: 20px; background: #334155; text-align: center; }
+    .detail-item h4 { font-size: 0.9rem; color: #94a3b8; }
+    .detail-item p { font-size: 1.2rem; font-weight: bold; color: #f8fafc; }
+
+    /* Action Buttons */
+    .action-section { display: flex; gap: 15px; padding: 20px; justify-content: center; }
+    .btn { padding: 12px 28px; border-radius: 8px; font-weight: bold; cursor: pointer; border: none; transition: 0.3s; font-size: 1rem; }
+    .btn-primary { background-color: #38bdf8; color: #0f172a; }
+    .btn-primary:hover { background-color: #0284c7; color: #fff; }
+    .btn-outline { background: transparent; border: 2px solid #38bdf8; color: #38bdf8; }
+    .btn-outline:hover { background: #38bdf8; color: #0f172a; }
+
+    /* Animation */
+    .fade { animation: fadeEffect 1s; }
+    @keyframes fadeEffect { from { opacity: 0.4; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Kimit Real Estate Agency</h1>
+    <p>Discover what comfort means</p>
+  </header>
+
+  <div class="container">
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <img src="{{ url_for('static', filename='images.jpg') }}">
+        <div class="caption">
+          <h3>Modern Villa with Private Pool</h3>
+          <p>New Cairo - Fifth Settlement</p>
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <img src="{{ url_for('static', filename='images 2.jpg') }}">
+        <div class="caption">
+          <h3>Luxury Apartment with Panoramic View</h3>
+          <p>Sheikh Zayed City</p>
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <img src="{{ url_for('static', filename='images 3.jpg') }}">
+        <div class="caption">
+          <h3>Contemporary Townhouse</h3>
+          <p>New Administrative Capital</p>
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <img src="{{ url_for('static', filename='images 4.jpg') }}">
+        <div class="caption">
+          <h3>Beachfront Chalet</h3>
+          <p>North Coast</p>
+        </div>
+      </div>
+
+      <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+      <button class="next" onclick="plusSlides(1)">&#10095;</button>
+    </div>
+
+    <div class="property-details">
+      <div class="detail-item">
+        <h4>Area</h4>
+        <p>350 m²</p>
+      </div>
+      <div class="detail-item">
+        <h4>Bedrooms</h4>
+        <p>4 Rooms</p>
+      </div>
+      <div class="detail-item">
+        <h4>Bathrooms</h4>
+        <p>3 Baths</p>
+      </div>
+      <div class="detail-item">
+        <h4>Price Starts From</h4>
+        <p>8,500,000 EGP</p>
+      </div>
+    </div>
+
+    <div class="action-section">
+      <button class="btn btn-primary">Book a Viewing</button>
+      <button class="btn btn-outline">Contact via WhatsApp</button>
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let slides = document.getElementsByClassName("mySlides");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1; }    
+      slides[slideIndex-1].style.display = "block";  
+      setTimeout(showSlides, 4000);
+    }
+
+    function plusSlides(n) {
+      let slides = document.getElementsByClassName("mySlides");
+      slides[slideIndex-1].style.display = "none";
+      slideIndex += n - 1;
+      if (slideIndex >= slides.length) { slideIndex = 0; }
+      if (slideIndex < 0) { slideIndex = slides.length - 1; }
+      showSlides();
+    }
+  </script>
+
+</body>
+</html>
